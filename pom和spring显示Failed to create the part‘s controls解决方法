@@ -1,0 +1,25 @@
+Eclipse 中的 Spring 插件無法打開 pom.xml
+我已經在 Eclipse (Spring Tools 4.14.1) 中安裝了最流行的插件，我嘗試創建一個新項目並打開 pom.xml，然後它顯示錯誤，就像
+Failed to create the part's controls
+錯誤顯示如下。為什麼會這樣？如何解決？
+java.lang.NoClassDefFoundError: org/eclipse/tm4e/ui/utils/ContentTypeHelper
+    at org.eclipse.tm4e.languageconfiguration.LanguageConfigurationCharacterPairMatcher.findContentTypes(LanguageConfigurationCharacterPairMatcher.java:134)
+    at org.eclipse.tm4e.languageconfiguration.LanguageConfigurationCharacterPairMatcher.getMatcher(LanguageConfigurationCharacterPairMatcher.java:113)
+    at org.eclipse.tm4e.languageconfiguration.LanguageConfigurationCharacterPairMatcher.match(LanguageConfigurationCharacterPairMatcher.java:47)
+    at org.eclipse.jface.text.source.MatchingCharacterPainter.paint(MatchingCharacterPainter.java:313)
+    at org.eclipse.jface.text.PaintManager.addPainter(PaintManager.java:207)
+...
+
+通過幫助 > 安裝新軟件安裝Eclipse tm4e ...與更新站點一起使用是否可以解決您的問題？http://download.eclipse.org/tm4e/snapshots/ 
+•	是的，它確實！因此 pom.xml 編輯依賴於 Eclipse 的常規安裝可能無法真正涵蓋的部分。非常感謝！:) 
+•	也許 Spring Tools 4.14.1 沒有明確要求 tm4e，它包含在面向企業 Java 和 Web 開發人員的 Eclipse IDE 中，但不包含在面向 Java 開發人員的 Eclipse IDE 中（我猜你有，對吧？）。因此，請確保已在此處報告：github.com/spring-projects/sts4/issues 
+•	或者可能是m2e的問題。您將 Spring Tools 4.14.1 安裝到哪個 Eclipse IDE 包和哪個 m2e 版本的 Eclipse 版本中？ 
+•	是的，我做到了。我的安裝實際上是 Enterprise Java 版本，它不包括 tm4e。 
+
+缺少 Spring Tools 4.14.1 tm4e。
+
+要安裝它，"Help → Install new software → Add URLhttps://download.eclipse.org/tm4e/snapshots/”。點擊完成。重新啟動 Eclipse。
+謝謝！這對我有用：download.eclipse.org/tm4e/releases/latest 
+只需選擇“TextMate Core”組件。 
+•	答案是正確的，但是，這似乎應該在 Eclipse 包管理中作為依賴項提及。 
+
